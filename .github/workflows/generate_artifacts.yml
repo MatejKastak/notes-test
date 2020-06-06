@@ -1,0 +1,32 @@
+name: artifacts
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Install orglearn
+      run: |
+        sudo apt-get install pandoc
+        python -m pip install --upgrade pip
+        pip install orglearn
+
+    - name: Generate pdfs
+      run: |
+        find . -name "*.org" -exec orglearn pdf {} ;
+        
+    - name: Pack the whole repo for now
+      run: |
+        zip -r artifacts.zip *
+        
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifacts.zip
+        path: artifacts.zip
