@@ -1,0 +1,61 @@
+#+TITLE: Architektury vypocetnych systemov
+#+LATEX_HEADER: \setlength\parindent{0pt}
+
+* Test heading
+VPN - Virtual Page Number
+PPN - Physical Page Number
+TLB - Translation Lookaside Table
+TLP - Thread Level Paralelism
+VLIW - Very Long Instruction Word
+SIMD - Single Instruction Multiple Data
+* Uvod
+** Moorove pravidlo
+pocet tranzistorov na integrovanych obvodoch sa zdvojnasobi kazde dva roky
+** Amdahlove pravidlo
+Rozdelenie zataze:
+- 1 CPU $\alpha W$ .... sekvencna cast
+- P CPU $(1-\alpha)W$.... paralelizovana cast
+$S(P)=\frac{T_S}{T(P)}=\frac{W/R}{W(\frac{\alpha}{R}+\frac{1-\alpha}{PR})}=\frac{P}{1+\alpha(P-1)}$
+Zrychlenie $\lim_{P\rightarrow \infty} S(P)=1/\alpha$
+Efektivita $\lim_{P\rightarrow \infty} E=0$
+** Sub-skalarny VS skalarny CPU
+vid pr1-sl12, pr1-sl14
+*** Nezretazena (sub-skalarna) linka
+*** Zretazena (skalarna) linka
+** Klasifikacie konfliktov
+# NOTE pozriet priklady
+*** datove
+Prave:
+ - RAW
+ - instrukcia pracuje s vysledkom generovanycm skorsou instrukciou
+ - riesenie: cakanie na vysledok, predavanie dat
+Neparave:
+ - WAR
+ - WAW
+ - instrukcia zapisuje tam, odkial predchadzajuca instrukcia citala alebo kam
+   pisala. nejde o tok dat, ale o konflikt mien
+ - riesenie: premenovanim
+*** riadiace
+- instrukcia zavisi na adrese nasledujucej instrukcie
+**** Redukcia pokuty u nepodmieneneho skoku
+pridanie scitacky pre vypocet adresy v stupni D, pokuta he 1 takt
+**** Redukcia pokuty u podmieneneho skoku
+pridanie scitacky pre vypocet adresy v stupni D, pokuta he 1 takt + detekcia
+nuly v stupni D
+*** strukturalne
+- instrukcia moze potrebovat prostriedok, ktory pouziva ina instrukcia
+** Prerusenia a vynimky
+*** Vynimka
+neobvykla interna udalost pri spracovani konkretnej instrukcie. v obecnosti
+instrukcia nemoze byt dokoncena a musi byt restartovana po spracovani vynimky
+*** Prerusenie
+hw signal prepinajuci preosecor na novy prud instrukcii pri vyskyte nejakej
+externej udalosti
+*** Obsluha preruseni
+* Rysy superskalarnych procesorov
+- paralelne zretazene linky
+- premenovanie registrov v hw
+- dynamicke planovanie instrukcii out-of-order
+- zoradovacia pamat
+- spekulativne vykonavanie instrukcii
+* Nizkoprikonove procesory
