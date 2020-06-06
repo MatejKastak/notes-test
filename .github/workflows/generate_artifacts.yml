@@ -24,7 +24,7 @@ jobs:
 
     - name: Generate pdfs
       run: |
-        find . -name "*.org" -exec orglearn pdf {} ;
+        find . -name "*.org" -exec orglearn pdf {} ';'
         
     - name: Pack the whole repo for now
       run: |
