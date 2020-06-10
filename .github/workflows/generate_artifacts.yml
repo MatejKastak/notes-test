@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: blang/latex
+    container: aergus/latex
 
     steps:
     - uses: actions/checkout@v2
