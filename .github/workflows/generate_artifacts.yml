@@ -36,12 +36,15 @@ jobs:
       run: |
         find . -name "*.org" -exec orglearn map {} -i questions ';'
         
-    - name: Pack the whole repo for now
-      run: |
-        zip -r artifacts.zip *
-        
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v1
+    - name: Add pdfs to artifacts (pdfs and maps)
+      uses: actions/upload-artifact@v2
       with:
         name: artifacts
-        path: .
+        path: '**/*.pdf'
+        
+                
+    - name: Add anki decks to artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: '**/*.apkg'
