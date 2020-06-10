@@ -24,17 +24,17 @@ jobs:
 
     - name: Generate pdfs
       run: |
-        find . -name "*.org" -exec orglearn pdf {} ';'
+        find . -maxdepth 2 -name "*.org" -exec orglearn pdf {} ';'
         
         
     - name: Generate anki
       run: |
-        find . -name "*.org" -exec orglearn anki {} --mobile ';'
+        find . -maxdepth 2 -name "*.org" -exec orglearn anki {} --mobile ';'
         
         
     - name: Generate map
       run: |
-        find . -name "*.org" -exec orglearn map {} -i questions ';'
+        find . -maxdepth 2 -name "*.org" -exec orglearn -i questions ';'
         
     - name: Add pdfs to artifacts (pdfs and maps)
       uses: actions/upload-artifact@v2
