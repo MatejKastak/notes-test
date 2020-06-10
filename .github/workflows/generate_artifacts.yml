@@ -7,12 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: aergus/latex
+    container: blang/latex
 
     steps:
     - uses: actions/checkout@v2
-      
     - name: Setup Python
+      
       uses: actions/setup-python@v2
       with:
         python-version: '3.7'
