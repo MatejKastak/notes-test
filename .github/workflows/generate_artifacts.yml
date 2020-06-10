@@ -14,7 +14,7 @@ jobs:
     
     - name: Install orglearn
       run: |
-        apt-get install python3-pip
+        apt-get install -y python3-pip
         python -m pip install --upgrade pip
         pip install orglearn
 
