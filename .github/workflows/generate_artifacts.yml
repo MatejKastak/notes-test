@@ -11,8 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Python
-      
+    
     - name: Install orglearn
       run: |
         python -m pip install --upgrade pip
