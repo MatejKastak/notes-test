@@ -16,11 +16,6 @@ jobs:
       run: |
         apt-get update
         apt-get install -y python3 python3-pip
-        
-    # - name: Set up Python
-      #uses: actions/setup-python@v2
-      # with:
-        # python-version: '3.7'
       
     - name: Install orglearn
       run: |
@@ -30,6 +25,16 @@ jobs:
     - name: Generate pdfs
       run: |
         find . -name "*.org" -exec orglearn pdf {} ';'
+        
+        
+    - name: Generate anki
+      run: |
+        find . -name "*.org" -exec orglearn anki {} --mobile ';'
+        
+        
+    - name: Generate map
+      run: |
+        find . -name "*.org" -exec orglearn map {} -i questions ';'
         
     - name: Pack the whole repo for now
       run: |
