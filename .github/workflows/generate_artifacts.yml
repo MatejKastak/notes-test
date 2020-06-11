@@ -1,8 +1,8 @@
 name: artifacts
 
 on:
-  push:
-    tags: gen
+  watch:
+    types: [started]
 
 jobs:
   build:
